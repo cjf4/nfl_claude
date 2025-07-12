@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  # Jupyter lab for analysis
+  analysis:
+    build:
+      context: ./analysis
+      dockerfile: Dockerfile
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./analysis:/workspace/analysis
+      - ./data:/workspace/data
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    profiles:
+      - analysis
+
+  # Future web app service
+  webapp:
+    build:
+      context: ./webapp
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./webapp:/app
+      - ./data:/data
+    profiles:
+      - webapp
+
+volumes:
+  nfl_data:
