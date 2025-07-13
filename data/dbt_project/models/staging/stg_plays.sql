@@ -1,7 +1,7 @@
 -- Staging model for play-by-play data
 -- Cleans and standardizes the raw nflfastr data
 
-{{ config(materialized='view') }}
+{{ config(materialized='table') }}
 
 select
     play_id,
@@ -29,5 +29,6 @@ select
     epa,
     wp as win_probability,
     wpa as win_probability_added
-from {{ ref('pbp_all') }}
+from pbp
 where play_type is not null
+limit 100
