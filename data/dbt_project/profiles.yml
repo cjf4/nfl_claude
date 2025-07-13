@@ -4,4 +4,5 @@ nfl_analytics:
     dev:
       type: duckdb
       path: '../nfl.duckdb'
+      schema: main
       threads: 4
