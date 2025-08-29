@@ -1,0 +1,36 @@
+version: 2
+
+sources:
+  - name: raw
+    description: Raw NFL play-by-play data from nflfastR
+    schema: main
+    tables:
+      - name: pbp
+        description: NFL play-by-play data for all seasons
+        columns:
+          - name: play_id
+            description: Unique identifier for each play
+          - name: game_id
+            description: Unique identifier for each game
+          - name: season
+            description: NFL season year
+          - name: week
+            description: Week number in the season
+          - name: game_date
+            description: Date of the game
+          - name: home_team
+            description: Home team abbreviation
+          - name: away_team
+            description: Away team abbreviation
+          - name: posteam
+            description: Team with possession of the ball
+          - name: defteam
+            description: Defending team
+          - name: play_type
+            description: Type of play (pass, run, punt, etc.)
+          - name: epa
+            description: Expected Points Added
+          - name: wp
+            description: Win Probability
+          - name: wpa
+            description: Win Probability Added
