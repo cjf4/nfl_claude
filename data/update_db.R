@@ -10,15 +10,15 @@ library(dplyr)
 library(dbplyr)
 
 # Configuration
-DB_PATH <- "nfl.duckdb"
+DB_PATH <- "data/nfl.duckdb"
 
 # Update database with nflfastR data
 # This will download/update play-by-play data for all available seasons
 update_db(
-  dbdir = ".",
+  dbdir = "data",
   dbname = "nfl.duckdb",
   tblname = "pbp",
-  force_rebuild = FALSE
+  force_rebuild = c(2025)
 )
 
 cat("NFL database updated successfully at:", DB_PATH, "\n")
