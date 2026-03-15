@@ -13,9 +13,16 @@ Software used:
 ## Structure
 
 - **`data/`** - NFL data pipeline using nflfastr, dbt for transformations
-- **`analysis/`** - Python notebooks and custom analysis scripts  
-- **`webapp/`** - Web app (currently empty)
+- **`analysis/`** - Python notebooks and custom analysis scripts
+- **`app/`** - Streamlit web app
 - **`nfl_env/`** - Python virtual environment
+
+## Web App
+
+Run locally:
+```bash
+streamlit run app/main.py
+```
 
 ## Getting Started
 
