@@ -9,27 +9,29 @@
 ## Tasks
 
 ### 1. Project Setup
-- [ ] Create `app/` directory for Streamlit code
-- [ ] Set up `requirements.txt` with core dependencies (streamlit, pandas, plotly, etc.)
-- [ ] Create basic Streamlit app entry point (`app/main.py`) with placeholder content
-- [ ] Verify local Streamlit runs (`streamlit run app/main.py`)
+- [x] Create `app/` directory for Streamlit code
+- [x] Set up `requirements.txt` with core dependencies (streamlit, pandas, plotly, etc.)
+- [x] Create basic Streamlit app entry point (`app/main.py`) with placeholder content
+- [x] Verify local Streamlit runs
+- [x] Fix local Python environment (recreated .venv)
 
 ### 2. Deployment (Get Live First)
-- [ ] Create `.streamlit/config.toml` with any needed settings
-- [ ] Add `README.md` for the app (Streamlit Cloud needs this)
-- [ ] Ensure repo structure works with Streamlit Cloud
-- [ ] Deploy to Streamlit Cloud
-- [ ] Verify public URL works with placeholder content
+- [x] Create `.streamlit/config.toml` with any needed settings
+- [x] Add `README.md` for the app (Streamlit Cloud needs this)
+- [x] Ensure repo structure works with Streamlit Cloud
+- [x] Deploy to Streamlit Cloud
+- [x] Verify public URL works with placeholder content
 
 ### 3. Analysis Rendering Infrastructure
+- [ ] Create `analyses/` directory structure for self-contained analyses
 - [ ] Create a pattern for translating notebook analysis into Streamlit pages
 - [ ] Build helper functions for common viz patterns (context bars, league comparisons, etc.)
-- [ ] Set up data connection to existing database (DuckDB/SQLite from nflfastR)
+- [x] **Decision:** Use static data files per analysis, not live database queries (for reliability/reproducibility)
 
 ### 4. First Analysis Page
 - [ ] **BLOCKED: Waiting for user to provide/identify notebook**
-- [ ] Convert notebook content into Streamlit page
-- [ ] Add any needed narrative/context text
+- [ ] Export static data from notebook to `analyses/<name>/data/`
+- [ ] Convert notebook content into Streamlit page in `app/pages/`
 - [ ] Test locally, then push to deploy
 
 ### 5. Blog/Narrative Pattern (Optional for M1)
@@ -44,7 +46,29 @@
 - Use Plotly for interactive charts (works well with Streamlit).
 - User prefers Python/SQL, minimal JS.
 - Context is key - every stat should explain "is this good or bad?"
-- Check existing notebooks in `analysis/` for patterns and data queries.
+- Check existing notebooks in `explorations/` for patterns and data queries.
+
+## Data Architecture
+
+- `explorations/` - scratch/exploration notebooks
+- `analyses/` - publishable analyses, self-contained with static data
+
+Each publishable analysis:
+```
+analyses/
+  <analysis-name>/
+    notebook.ipynb      # Polished notebook
+    data/               # Static data exported from notebook
+app/
+  pages/
+    <analysis-name>.py  # Published Streamlit page, loads from analyses/<name>/data/
+```
+
+**Why static data:** Analyses are snapshots. No live database queries in Streamlit means:
+- No database credentials needed in production
+- Faster page loads
+- Analysis still works if database changes
+- Reproducible results
 
 ---
 

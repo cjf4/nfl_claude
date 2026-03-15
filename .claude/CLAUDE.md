@@ -1,0 +1,1 @@
+dont add "coauthored by claude" or anything similar to git commits.

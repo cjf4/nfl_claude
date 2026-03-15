@@ -13,9 +13,10 @@ Software used:
 ## Structure
 
 - **`data/`** - NFL data pipeline using nflfastr, dbt for transformations
-- **`analysis/`** - Python notebooks and custom analysis scripts
+- **`explorations/`** - Scratch notebooks for exploring data
+- **`analyses/`** - Publishable analyses (self-contained with static data)
 - **`app/`** - Streamlit web app
-- **`nfl_env/`** - Python virtual environment
+- **`.venv/`** - Python virtual environment
 
 ## Web App
 
@@ -28,7 +29,7 @@ streamlit run app/main.py
 
 ### 1. Activate Virtual Environment
 ```bash
-source nfl_env/bin/activate
+source .venv/bin/activate
 ```
 
 ### 2. Update data
